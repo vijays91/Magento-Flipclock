@@ -1,0 +1,91 @@
+<?php
+/**
+ * Integrate Flipclock
+ *
+ * @category   Flipclock
+ * @package    Learn_Flipclock
+ * @author     Vijayakumar
+ *
+ */
+?>
+<?php
+
+/** $this = Learn_Flipclock_Block_Flipclock **/
+
+$_helper = Mage::helper('flipclock');
+$active = $_helper->flipclock_enable();
+$flipclock_main_title_color     = $_helper->flipclock_main_title_color();
+$flipclock_label_title_color    = $_helper->flipclock_label_title_color();
+$flipclock_day_color            = $_helper->flipclock_day_color();
+$flipclock_hours_color          = $_helper->flipclock_hours_color();
+$flipclock_minutes_color        = $_helper->flipclock_minutes_color();
+$flipclock_seconds_color        = $_helper->flipclock_seconds_color();
+$flipclock_display              = $_helper->flipclock_display();
+
+/*- Product Info -*/
+$product = Mage::registry('product'); 
+$flipclock_enable  = $product->getData('flipclock_enable'); 
+$flipclock_special_title = $product->getData('flipclock_special_title'); 
+$flipclock_start_date  = $product->getData('flipclock_start_date'); 
+$flipclock_end_date  = $product->getData('flipclock_end_date');
+$flipclock_start_date = date("m/d/Y h:i:00 A", strtotime($flipclock_start_date));
+$flipclock_end_date = date("m/d/Y h:i:00 A", strtotime($flipclock_end_date));
+$flipclock_current_start_date = date("m/d/Y h:i:s A");
+
+/*- date validation -*/
+$now    = new DateTime($flipclock_current_start_date);
+$future = new DateTime($flipclock_start_date);
+$past = new DateTime($flipclock_end_date);
+
+// var_dump($past   > $now);         // bool(true)
+// var_dump($future   < $now);         // bool(true)
+
+if(($future < $now) && ($past > $now)) :
+    if($flipclock_enable && $active && $flipclock_start_date && $flipclock_end_date && $flipclock_special_title) :
+    ?>
+        <div style="clear:both;"></div>
+        <div class="flipclock_head_text"><h3><b><?php echo $flipclock_special_title; ?></b></h3></div>
+        <div class="clock flipclock" style="margin:2em 2em 2em 0;"></div>
+        <script type="text/javascript">
+            var clock;
+            var startDate = new Date("<?php echo $flipclock_current_start_date; ?>");
+            var endDate   = new Date("<?php echo $flipclock_end_date; ?>");
+            var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+            if(seconds > 0 ) {
+                jQuery(document).ready(function() {
+                    var clock;
+                    clock = jQuery('.clock').FlipClock(seconds, {
+                        clockFace: 'DailyCounter',
+                        autoStart: false,
+                        countdown: true,
+                        callbacks: {
+                            stop: function() {
+                                window.location.reload();
+                            },
+                        }
+                    });
+                    //clock.setTime(seconds);
+                    clock.setCountdown(true);
+                    clock.start();
+
+                    jQuery(".flip-clock-divider .flip-clock-label").css("color", "#<?php echo $flipclock_label_title_color; ?>");
+                    jQuery(".flipclock_head_text h3").css("color", "#<?php echo $flipclock_main_title_color; ?>");
+                });
+            } else {
+                jQuery('.clock').css('display', 'none');
+                jQuery('.flipclock_head_text').css('display', 'none');
+            }
+        </script>
+        <style type="text/css">
+            .flipclock .days + ul li a div div.inn{background-color:#<?php echo $flipclock_day_color;?>}
+            .flipclock .days ~ ul li a div div.inn{background-color:#<?php echo $flipclock_day_color;?>}
+            .flipclock .hours + ul li a div div.inn{background-color:#<?php echo $flipclock_hours_color;?>}
+            .flipclock .hours ~ ul li a div div.inn{background-color:#<?php echo $flipclock_hours_color;?>}
+            .flipclock .minutes + ul li a div div.inn{background-color:#<?php echo $flipclock_minutes_color;?>}
+            .flipclock .minutes ~ ul li a div div.inn{background-color:#<?php echo $flipclock_minutes_color;?>}
+            .flipclock .seconds + ul li a div div.inn{background-color:#<?php echo $flipclock_seconds_color;?>}
+            .flipclock .seconds ~ ul li a div div.inn{background-color:#<?php echo $flipclock_seconds_color;?>}
+        </style>
+        <div style="clear:both;"></div>
+    <?php endif; ?>
+<?php endif; ?>

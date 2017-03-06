@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<config>
+	<tabs>
+        <myconf_vijaystore translate="label">
+            <label>FlipClock</label>
+            <sort_order>50</sort_order>
+        </myconf_vijaystore>
+    </tabs>
+	<sections>
+		<flipclock translate="label" module="flipclock">
+			<label>Flipclock Settings</label>
+			<tab>myconf_vijaystore</tab>
+			<sort_order>140</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<settings translate="label" module="flipclock">
+					<label>Flipclock Settings</label>
+					<sort_order>100</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<flipclock_active translate="label comment">
+							<label>Flipclock enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<validate>required-entry </validate>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_active>
+						<flipclock_jquery translate="label comment">
+							<label>jQuery enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<validate>required-entry </validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_jquery>
+						<flipclock_main_title_color translate="label comment">
+							<label>Main title color</label>
+							<comment><![CDATA[Color for the main title.]]></comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<validate>required-entry </validate>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_main_title_color>
+						<flipclock_label_title_color translate="label comment">
+							<label>Label title color</label>
+							<comment><![CDATA[Color for the label title(Days, Hours, Minutes, Seconds).]]></comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<sort_order>30</sort_order>
+							<validate>required-entry </validate>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_label_title_color>
+						<flipclock_day_color translate="label comment">
+							<label>Day color</label>
+							<comment><![CDATA[Color for the Day box.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry </validate>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_day_color>
+						<flipclock_hours_color translate="label comment">
+							<label>Hours color</label>
+							<comment><![CDATA[Color for the Hours box.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry </validate>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_hours_color>
+						<flipclock_minutes_color translate="label comment">
+							<label>Minutes color</label>
+							<comment><![CDATA[Color for the Minutes box.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry </validate>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_minutes_color>
+						<flipclock_seconds_color translate="label comment">
+							<label>Seconds color</label>
+							<comment><![CDATA[Color for the Seconds box.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry </validate>
+							<frontend_model>flipclock/adminhtml_system_config_color</frontend_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_seconds_color>
+						<!--
+						<flipclock_display translate="label comment">
+							<label>Display in</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>flipclock/flipclock_displaypage</source_model>
+							<validate>required-entry </validate>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</flipclock_display>
+					-->
+					</fields>
+				</settings>
+			</groups>
+		</flipclock>
+	</sections>
+</config>

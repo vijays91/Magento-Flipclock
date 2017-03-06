@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="flipclock/settings/flipclock_jquery">
+                <type>skin_js</type>
+                <name>js/flipclock/jquery.min.js</name>
+            </action>
+            <action method="addItem" ifconfig="flipclock/settings/flipclock_active">
+                <type>skin_js</type>
+                <name>js/flipclock/flipclock.js</name>
+            </action>
+            <action method="addItem" ifconfig="flipclock/settings/flipclock_active">
+                <type>skin_css</type>
+                <name>css/flipclock/flipclock.css</name>
+            </action>
+        </reference>
+    </default>
+    
+    <catalog_product_view>
+        <reference name="content">
+            <reference name="product.info">
+                <reference name="alert.urls">
+                    <block type="flipclock/flipclock" name="flipclock" as="flipclock">
+                        <action method="setTemplate" ifconfig="flipclock/settings/flipclock_active">
+                            <template>flipclock/flipclock.phtml</template>
+                        </action>
+                    </block>
+                </reference>
+            </reference>
+        </reference>
+    </catalog_product_view>
+</layout>

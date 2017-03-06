@@ -1,0 +1,121 @@
+<?php
+/**
+ * Integrate Product Flasher
+ *
+ * @category   Product Flasher
+ * @package    Learn_Product_Flasher
+ * @author     Vijayakumar
+ *
+ */
+?>
+
+<?php
+	$product = Mage::registry('product'); 
+	$flipclock_enable  = $product->getData('flipclock_enable'); 
+	$flipclock_special_title = $product->getData('flipclock_special_title'); 
+	$flipclock_start_date  = $product->getData('flipclock_start_date'); 
+	$flipclock_end_date  = $product->getData('flipclock_end_date');
+	if($flipclock_start_date) {
+		$flipclock_start_date  = date("m/d/Y H:i", strtotime($flipclock_start_date));		
+	}
+	if($flipclock_end_date) {
+		$flipclock_end_date  = date("m/d/Y H:i", strtotime($flipclock_end_date));
+	}
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">
+			<?php echo $this->getTabTitle();?>
+		</h4>
+	</div>
+	<div class="fieldset fieldset-wide" id="group_fields8">
+		<div class="hor-scroll">
+			<table cellspacing="0" class="form-list">
+				<tbody>
+					<tr>
+						<td class="label">
+							<label for="flipclock_enable">
+								<?php echo $this->__('Flipclock Enable');?>
+								<span class="required">*</span>
+							</label>
+						</td>
+						<td class="value">
+							<select id="flipclock_enable" name="product[flipclock_enable]" class=" required-entry required-entry select">
+								<option value=""><?php echo $this->__("-- Please Select --");?></option>
+								<option value="1" <?php echo ($flipclock_enable) ? " selected " : "" ;?> >
+									<?php echo $this->__('Enable');?>
+								</option>
+								<option value="0" <?php echo (!$flipclock_enable) ? " selected " : "" ;?> >
+									<?php echo $this->__('Disable');?>
+								</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="flipclock_special_title">
+								<?php echo $this->__('Flipclock Special Title');?>
+								<span class="required">*</span>
+							</label>
+						</td>
+						<td class="value">
+							<input id="flipclock_special_title" name="product[flipclock_special_title]" value="<?php echo $flipclock_special_title; ?>" class=" required-entry input-text" type="text" />
+						</td>
+					</tr>
+		
+					<tr>
+						<td class="label">
+							<label for="flipclock_start_date">
+								<?php echo $this->__('Flipclock Start Date');?>
+								<span class="required">*</span>
+							</label>
+						</td>
+						<td class="value">
+							<input id="flipclock_start_date" name="product[flipclock_start_date]" value="<?php echo $flipclock_start_date; ?>" class=" required-entry input-text validate-date validate-date-range date-range-flipclock_start_date-from validate-ajax-flipclock_start_date" type="text" style="width: 274px ! important;" readonly />
+							<img style="" title="Select Date" id="date_from_trig" alt="Flipclock Start Date" src="<?php echo $this->getSkinUrl("images/grid-cal.gif");?> "/>
+							<p class="note"><?php echo $this->__('m/d/Y H:M format');?></p>
+						</td>
+					</tr>
+					<tr>
+
+						<td class="label">
+							<label for="flipclock_end_date">
+								<?php echo $this->__('Flipclock End Date');?>
+								<span class="required">*</span>
+							</label>
+						</td>
+						<td class="value">
+							<input id="flipclock_end_date" name="product[flipclock_end_date]" value="<?php echo $flipclock_end_date; ?>" class=" required-entry input-text validate-date validate-date-range date-range-flipclock_end_date-to validate-ajax-flipclock_start_to" type="text" style="width: 274px ! important;" readonly />
+							<img style="" title="Select Date" class="v-middle"id="date_to_trig" alt="Flipclock End Date" src="<?php echo $this->getSkinUrl("images/grid-cal.gif");?> "/>
+							<p class="note"><?php echo $this->__('m/d/Y H:M format');?></p>
+						</td>
+					</tr>
+
+            	</tbody>
+        	</table>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">// <![CDATA[
+Calendar.setup({
+	inputField : 'flipclock_start_date',
+	// ifFormat : '%d/%m/%Y %H:%M:%S',
+	ifFormat : '%m/%d/%Y %H:%M',
+	button : 'date_from_trig',
+	showsTime: true,
+	align : 'Bl',
+	singleClick : true
+});
+
+Calendar.setup({
+	inputField : 'flipclock_end_date',
+	// ifFormat : '%d/%m/%Y %H:%M:%S',
+	ifFormat : '%m/%d/%Y %H:%M',
+	button : 'date_to_trig',
+	showsTime: true,
+	align : 'Bl',
+	singleClick : true
+});
+// ]]></script>
